@@ -17,3 +17,22 @@ function drawGrid(ctx, color = 'lightsteelblue', step = 30) {
     }
     ctx.restore();
 }
+
+
+function drawPacman(ctx, radius = 20) {
+    ctx.save();
+    const angle = 0.2 * Math.PI;
+    const x = ctx.canvas.width / 2;
+    const y = ctx.canvas.height / 2;
+    ctx.translate(x, y);
+    ctx.fillStyle = 'yellow';
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 0.5;
+    ctx.beginPath();
+    ctx.arc(0, 0, radius, angle, -angle);
+    ctx.lineTo(0, 0);
+    ctx.closePath()
+    ctx.fill();
+    ctx.stroke();
+    ctx.restore();
+}

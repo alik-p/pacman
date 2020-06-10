@@ -1,4 +1,4 @@
-function drawGrid(ctx, color = 'lightsteelblue', step = 30) {
+export function drawGrid(ctx, color = 'lightsteelblue', step = 30) {
     ctx.save();
     ctx.strokeStyle = color;
     ctx.lineWidth = 0.5;
@@ -19,12 +19,9 @@ function drawGrid(ctx, color = 'lightsteelblue', step = 30) {
 }
 
 
-function drawPacman(ctx, radius = 20) {
+export function drawPacman(ctx, radius) {
     ctx.save();
     const angle = 0.2 * Math.PI;
-    const x = ctx.canvas.width / 2;
-    const y = ctx.canvas.height / 2;
-    ctx.translate(x, y);
     ctx.fillStyle = 'yellow';
     ctx.strokeStyle = 'black';
     ctx.lineWidth = 0.5;

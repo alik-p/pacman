@@ -4,15 +4,10 @@
     <meta charset="UTF-8">
     <title>Pac-Man</title>
     <link rel="stylesheet" href="css/styles.css">
-    <script src="js/drawing.js"></script>
 </head>
 <body>
 <h1>Pac-Man on Canvas</h1>
 <canvas id="pacman" width="600" height="600" tabindex="1"></canvas>
-<script>
-    const context = document.getElementById('pacman').getContext('2d');
-    drawGrid(context);
-    drawPacman(context);
-</script>
+<script type="module" src="js/main.js"></script>
 </body>
 </html>

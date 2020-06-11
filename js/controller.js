@@ -17,7 +17,16 @@ Controller.prototype.draw = function () {
 }
 
 
-Controller.prototype.frame = function () {
+Controller.prototype.frame = function (timestamp) {
+    if (!this.timestampPrev) this.timestampPrev = timestamp;
+    const timeElapsed = timestamp - this.timestampPrev;
+    this.update(timeElapsed / 1000);
     this.draw();
+    this.timestampPrev = timestamp;
     window.requestAnimationFrame(this.frame.bind(this));
+}
+
+
+Controller.prototype.update = function (timeElapsed) {
+    this.pacman.update(timeElapsed);
 }

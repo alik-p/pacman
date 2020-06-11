@@ -19,9 +19,9 @@ export function drawGrid(ctx, color = 'lightsteelblue', step = 30) {
 }
 
 
-export function drawPacman(ctx, radius) {
+export function drawPacman(ctx, radius, mouth) {
     ctx.save();
-    const angle = 0.2 * Math.PI;
+    const angle = 0.2 * Math.PI * mouth;
     ctx.fillStyle = 'yellow';
     ctx.strokeStyle = 'black';
     ctx.lineWidth = 0.5;

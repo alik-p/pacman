@@ -5,8 +5,9 @@ import { PacMan } from './models.js';
 export const Controller = function (canvasId) {
     this.canvas = document.getElementById(canvasId);
     this.context = this.canvas.getContext('2d');
+    this.canvas.focus();
     this.pacman = new PacMan(this.canvas.width / 2, this.canvas.height / 2, 20);
-    this.pacman.moveRight();
+    this.canvas.addEventListener('keydown', this.onKeyDown.bind(this), true);
     window.requestAnimationFrame(this.frame.bind(this));
 }
 
@@ -25,6 +26,34 @@ Controller.prototype.frame = function (timestamp) {
     this.draw();
     this.timestampPrev = timestamp;
     window.requestAnimationFrame(this.frame.bind(this));
+}
+
+
+Controller.prototype.onKeyDown = function (event) {
+    let handled = true;
+    switch (event.key) {
+        case 'ArrowDown': {
+            this.pacman.moveDown()
+            break;
+        }
+        case 'ArrowRight': {
+            this.pacman.moveRight();
+            break;
+        }
+        case 'ArrowLeft': {
+            this.pacman.moveLeft()
+            break;
+        }
+        case 'ArrowUp': {
+            this.pacman.moveUp();
+            break;
+        }
+        default: {
+            handled = false;
+            break;
+        }
+    }
+    if (handled) event.preventDefault();
 }
 
 

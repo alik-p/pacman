@@ -1,9 +1,10 @@
 import * as Drawing from './drawing.js';
 
 
-export function Ghost(x, y, radius = 25, speed = 60) {
+export function Ghost(x, y, radius = 25, speed = 60, color = 'blue') {
     this.x = x;
     this.y = y;
+    this.color = color;
     this.radius = radius;
     this.speed = speed;
 }
@@ -12,7 +13,7 @@ export function Ghost(x, y, radius = 25, speed = 60) {
 Ghost.prototype.draw = function (ctx) {
     ctx.save();
     ctx.translate(this.x, this.y);
-    Drawing.drawGhost(ctx, this.radius);
+    Drawing.drawGhost(ctx, this.radius, this.color);
     ctx.restore();
 }
 

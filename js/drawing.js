@@ -1,7 +1,7 @@
-export function drawGhost(ctx, radius) {
+export function drawGhost(ctx, radius, color = 'blue') {
     ctx.save();
     ctx.strokeStyle = 'black';
-    ctx.fillStyle = 'blue';
+    ctx.fillStyle = color;
     ctx.lineWidth = 0.5;
     const feet = 4;
     const headRadius = radius * 0.8;

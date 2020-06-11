@@ -1,7 +1,7 @@
 import * as Drawing from './drawing.js';
 
 
-function PacMan(x, y, radius = 20, speed = 100) {
+export function PacMan(x, y, radius = 20, speed = 100) {
     this.x = x;
     this.y = y;
     this.angle = 0;         // move direction
@@ -78,6 +78,3 @@ PacMan.prototype.update = function (ctx, timeElapsed) {
     this.time += timeElapsed;
     this.mouth = Math.abs(Math.sin(2 * Math.PI * this.time));
 }
-
-
-export { PacMan }

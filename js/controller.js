@@ -1,5 +1,5 @@
 import * as Drawing from './drawing.js';
-import { PacMan } from './models.js';
+import { PacMan } from './pacman.model.js';
 
 
 export const Controller = function (canvasId) {

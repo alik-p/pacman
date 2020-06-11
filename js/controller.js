@@ -17,8 +17,8 @@ export const Controller = function (canvasId) {
 Controller.prototype.draw = function () {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     Drawing.drawGrid(this.context);
-    this.pacman.draw(this.context);
     this.ghost.draw(this.context);
+    this.pacman.draw(this.context);
 }
 
 
@@ -62,4 +62,5 @@ Controller.prototype.onKeyDown = function (event) {
 
 Controller.prototype.update = function (timeElapsed) {
     this.pacman.update(this.context, timeElapsed);
+    this.ghost.update(this.pacman, timeElapsed);
 }

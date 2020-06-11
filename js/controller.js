@@ -1,4 +1,5 @@
 import * as Drawing from './drawing.js';
+import { Ghost } from './ghost.model.js';
 import { PacMan } from './pacman.model.js';
 
 
@@ -7,6 +8,7 @@ export const Controller = function (canvasId) {
     this.context = this.canvas.getContext('2d');
     this.canvas.focus();
     this.pacman = new PacMan(this.canvas.width / 2, this.canvas.height / 2, 20);
+    this.ghost = new Ghost(Math.random() * this.canvas.width, Math.random() * this.canvas.height, 20);
     this.canvas.addEventListener('keydown', this.onKeyDown.bind(this), true);
     window.requestAnimationFrame(this.frame.bind(this));
 }
@@ -16,6 +18,7 @@ Controller.prototype.draw = function () {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     Drawing.drawGrid(this.context);
     this.pacman.draw(this.context);
+    this.ghost.draw(this.context);
 }
 
 

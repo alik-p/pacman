@@ -38,7 +38,7 @@ Controller.prototype.frame = function (timestamp) {
 Controller.prototype.generateGhost = function () {
     const x = Math.random() * this.canvas.width;
     const y = Math.random() * this.canvas.height;
-    const color = '#' + Math.floor(Math.random() * 16777216).toString(16);
+    const color = `rgb(${randomInt(0, 255)}, ${randomInt(0, 255)}, ${randomInt(0, 255)})`;
     const radius = random(this.pacman.radius * 0.7, this.pacman.radius * 1.25);
     const speed = random(this.pacman.speed / 4, this.pacman.speed * 0.7);
     return new Ghost(x, y, radius, speed, color);
@@ -87,4 +87,8 @@ Controller.prototype.update = function (timeElapsed) {
 
 const random = function (min = 0, max = 1) {
     return min + Math.random() * (max - min);
+}
+
+const randomInt = function (min = 0, max = 1) {
+    return Math.floor(min + Math.random() * (max + 1 - min));
 }

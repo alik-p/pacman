@@ -10,4 +10,4 @@ The project demonstrates the use of HTML Canvas technology, including:
 - JavaScript
 
 ## Demo
-GitHub Page: https://alik-p.github.io/pacman/index
+GitHub Page: https://alik-p.github.io/pacman/

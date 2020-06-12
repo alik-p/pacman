@@ -8,7 +8,7 @@ export function PacMan(x, y, radius = 20, speed = 100) {
     this.mouth = 0;         // mouth opening degree [0 to 1]
     this.radius = radius;
     this.speed = speed;
-    this.speedX = speed;
+    this.speedX = 0;
     this.speedY = 0;
     this.time = 0;
 }

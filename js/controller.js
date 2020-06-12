@@ -8,9 +8,12 @@ export const Controller = function (canvasId) {
     this.context = this.canvas.getContext('2d');
     this.canvas.focus();
     this.pacman = new PacMan(this.canvas.width / 2, this.canvas.height / 2, 20);
+    this.timeIdle = 0;   // idle time in sec
     this.timestamp = null;
     this.ghosts = [this.generateGhost()];
+    this.keysPressed = new Set();
     this.canvas.addEventListener('keydown', this.onKeyDown.bind(this), true);
+    this.canvas.addEventListener('keyup', this.onKeyUp.bind(this), true);
     window.requestAnimationFrame(this.frame.bind(this));
 }
 
@@ -22,7 +25,9 @@ Controller.prototype.draw = function () {
         ghost.draw(this.context);
     }, this)
     this.pacman.draw(this.context);
-    this.drawLegend();
+    if (this.isIdle()) {
+        this.drawLegend();
+    }
 }
 
 
@@ -54,9 +59,15 @@ Controller.prototype.generateGhost = function () {
 }
 
 
+Controller.prototype.isIdle = function () {
+    return this.timeIdle <= 0;
+}
+
+
 Controller.prototype.onKeyDown = function (event) {
     let handled = true;
-    switch (event.key) {
+    const key = event.key;
+    switch (key) {
         case 'ArrowDown': {
             this.pacman.moveDown()
             break;
@@ -78,12 +89,21 @@ Controller.prototype.onKeyDown = function (event) {
             break;
         }
     }
-    if (handled) event.preventDefault();
+    if (handled) {
+        this.keysPressed.add(key);
+        event.preventDefault();
+    }
+}
+
+
+Controller.prototype.onKeyUp = function (event) {
+    this.keysPressed.delete(event.key);
 }
 
 
 Controller.prototype.update = function (timeElapsed) {
     this.pacman.update(this.context, timeElapsed);
+    this.timeIdle = (this.keysPressed.size ===0) ? this.timeIdle - timeElapsed : 10;
     const level = Math.floor(this.timestamp / 10000) + 1;
     if (this.ghosts.length !== level) {
         this.ghosts.push(this.generateGhost());

@@ -102,11 +102,19 @@ Controller.prototype.onKeyUp = function (event) {
 
 
 Controller.prototype.update = function (timeElapsed) {
+    this.timeIdle = (this.keysPressed.size === 0) ? this.timeIdle - timeElapsed : 10;
     this.pacman.update(this.context, timeElapsed);
-    this.timeIdle = (this.keysPressed.size ===0) ? this.timeIdle - timeElapsed : 10;
-    const level = Math.floor(this.timestamp / 10000) + 1;
-    if (this.ghosts.length !== level) {
-        this.ghosts.push(this.generateGhost());
+    this.updateGhosts(timeElapsed);
+}
+
+
+Controller.prototype.updateGhosts = function (timeElapsed) {
+    const length = this.ghosts.length;
+    if (length < 15) {
+        const level = Math.floor(this.timestamp / 10000) + 1;
+        if (length !== level) {
+            this.ghosts.push(this.generateGhost());
+        }
     }
     this.ghosts.forEach(ghost => {
         ghost.update(this.pacman, timeElapsed)

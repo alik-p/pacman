@@ -22,6 +22,15 @@ Controller.prototype.draw = function () {
         ghost.draw(this.context);
     }, this)
     this.pacman.draw(this.context);
+    this.drawLegend();
+}
+
+
+Controller.prototype.drawLegend = function () {
+    this.context.save();
+    this.context.translate(15, 15);
+    Drawing.drawLegend(this.context);   // TODO idle
+    this.context.restore();
 }
 
 

@@ -56,6 +56,35 @@ export function drawGrid(ctx, color = 'lightsteelblue', step = 30) {
 }
 
 
+export function drawLegend(ctx, color = 'darkblue', size = 12) {
+    ctx.save();
+    let x = 0, y = 0;
+    const font = `${size}pt Cursive`;
+    const controls = {
+        down: String.fromCodePoint(0x2193),
+        up: String.fromCodePoint(0x2191),
+        right: String.fromCodePoint(0x2192),
+        left: String.fromCodePoint(0x2190),
+
+    }
+    ctx.textBaseline = 'top';
+    ctx.fillStyle = color;
+    ctx.font = `bold ${font}`;
+    ctx.fillText('Control keys:', x, y);
+    ctx.font = font;
+    x += size;
+    ctx.fillText(` ${controls.up}    up`, x, y += size * 2);
+    ctx.fillText(`${controls.right}   right`, x, y += size * 2);
+    ctx.fillText(`${controls.left}   left`, x, y += size * 2);
+    ctx.fillText(` ${controls.down}    down`, x, y += size * 2);
+    ctx.font = font.replace(`${size}`, `${size * 0.75}`);
+    ctx.fillText('To start:', x, y += size * 2);
+    ctx.fillText(' - focus on canvas;', x, y += size * 1.25);
+    ctx.fillText(' - press any control.', x, y += size * 1.25);
+    ctx.restore();
+}
+
+
 export function drawPacman(ctx, radius, mouth) {
     ctx.save();
     const angle = 0.2 * Math.PI * mouth;

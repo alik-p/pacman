@@ -52,6 +52,11 @@ export function drawGrid(ctx, color = 'lightsteelblue', step = 30) {
         ctx.lineTo(width, y);
         ctx.stroke();
     }
+    // Copyright:
+    ctx.fillStyle = 'darkblue';
+    ctx.font = `11pt Cursive`;
+    ctx.textAlign = 'right';
+    ctx.fillText(`${String.fromCharCode(169)}Alik`, width - 8, height - 8);
     ctx.restore();
 }
 

@@ -1,9 +1,15 @@
 body {
+    color: darkblue;
     text-align: center;
     font-family: cursive;
 }
 
 canvas {
     background-color: #f7f7f7;
-    border: 1px solid lightsteelblue;
+    border: 2px solid white;
+    outline: none;
+}
+
+canvas:focus {
+    border: 2px solid darkblue;
 }
